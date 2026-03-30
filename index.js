@@ -35,54 +35,31 @@ formElement.addEventListener("submit", async (event) => {
       if (data.Response === "True") {
         let movies = data.Search.slice(0, 9).filter(movie => movie.Type === "movie")
 
-        movies.forEach(movie => {
-        resultsElement.innerHTML +=
-          `<div class="movie">
-            <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
-              <figure class="movie__img--wrapper">
-                <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
-              </figure>
-            </a>
-            <h2 class="movie__title">${movie.Title}</h2>
-            <p>${movie.Year}</p>
-          </div>`
-        })
+        function movieHtml(movie) {
+          return `<div class="movie">
+                    <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
+                      <figure class="movie__img--wrapper">
+                        <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
+                      </figure>
+                    </a>
+                    <h2 class="movie__title">${movie.Title}</h2>
+                    <p>${movie.Year}</p>
+                  </div>`
+        }
+
+        resultsElement.innerHTML = movies.map(movie => movieHtml(movie)).join("")
 
         filterElement.addEventListener("change", (event) => {
           const selection = event.target.value
 
           if (selection === "OLD_TO_NEW") {
-            resultsElement.innerHTML = ""
             movies.sort((a, b) => a.Year - b.Year)
-            movies.forEach(movie => {
-              resultsElement.innerHTML +=
-                `<div class="movie">
-                  <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
-                    <figure class="movie__img--wrapper">
-                      <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
-                    </figure>
-                  </a>
-                  <h2 class="movie__title">${movie.Title}</h2>
-                  <p>${movie.Year}</p>
-                </div>`
-            })
+            resultsElement.innerHTML = movies.map(movie => movieHtml(movie)).join("")
           }
           
           else if (selection === "NEW_TO_OLD") {
-            resultsElement.innerHTML = ""
             movies.sort((a, b) => b.Year - a.Year)
-            movies.forEach(movie => {
-              resultsElement.innerHTML +=
-                `<div class="movie">
-                  <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
-                    <figure class="movie__img--wrapper">
-                      <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
-                    </figure>
-                  </a>
-                  <h2 class="movie__title">${movie.Title}</h2>
-                  <p>${movie.Year}</p>
-                </div>`
-            })
+            resultsElement.innerHTML = movies.map(movie => movieHtml(movie)).join("")
           }
         })
       }
