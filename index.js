@@ -32,9 +32,10 @@ formElement.addEventListener("submit", async (event) => {
       filterElement.value = "reset"
       resultsElement.style = "margin-top: 48px"
 
-      let movies = data.Search.slice(0, 9).filter(movie => movie.Type === "movie")
+      if (data.Response === "True") {
+        let movies = data.Search.slice(0, 9).filter(movie => movie.Type === "movie")
 
-      movies.forEach(movie => {
+        movies.forEach(movie => {
         resultsElement.innerHTML +=
           `<div class="movie">
             <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
@@ -47,32 +48,15 @@ formElement.addEventListener("submit", async (event) => {
           </div>`
         })
 
-      filterElement.addEventListener("change", (event) => {
-        const selection = event.target.value
+        filterElement.addEventListener("change", (event) => {
+          const selection = event.target.value
 
-        if (selection === "OLD_TO_NEW") {
-          resultsElement.innerHTML = ""
-          movies.sort((a, b) => a.Year - b.Year)
-          movies.forEach(movie => {
-            resultsElement.innerHTML +=
-              `<div class="movie">
-                <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
-                  <figure class="movie__img--wrapper">
-                    <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
-                  </figure>
-                </a>
-                <h2 class="movie__title">${movie.Title}</h2>
-                <p>${movie.Year}</p>
-              </div>`
-          })
-        }
-          
-        else if (selection === "NEW_TO_OLD") {
-          resultsElement.innerHTML = ""
-          movies.sort((a, b) => b.Year - a.Year)
-          movies.forEach(movie => {
-            resultsElement.innerHTML +=
-              `<div class="movie">
+          if (selection === "OLD_TO_NEW") {
+            resultsElement.innerHTML = ""
+            movies.sort((a, b) => a.Year - b.Year)
+            movies.forEach(movie => {
+              resultsElement.innerHTML +=
+                `<div class="movie">
                   <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
                     <figure class="movie__img--wrapper">
                       <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
@@ -81,9 +65,27 @@ formElement.addEventListener("submit", async (event) => {
                   <h2 class="movie__title">${movie.Title}</h2>
                   <p>${movie.Year}</p>
                 </div>`
-          })
-        }
-      })
+            })
+          }
+          
+          else if (selection === "NEW_TO_OLD") {
+            resultsElement.innerHTML = ""
+            movies.sort((a, b) => b.Year - a.Year)
+            movies.forEach(movie => {
+              resultsElement.innerHTML +=
+                `<div class="movie">
+                  <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
+                    <figure class="movie__img--wrapper">
+                      <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
+                    </figure>
+                  </a>
+                  <h2 class="movie__title">${movie.Title}</h2>
+                  <p>${movie.Year}</p>
+                </div>`
+            })
+          }
+        })
+      }
     }, 1000)
 
     if(data.Response === "False") {
