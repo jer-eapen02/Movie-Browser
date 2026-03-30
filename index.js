@@ -21,7 +21,7 @@ formElement.addEventListener("submit", async (event) => {
     resultsElement.innerHTML = ""
     const inputValue = inputElement.value
     
-    const response = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=abb25aee&s=${inputValue}`)
+    const response = await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=abb25aee&s=${inputValue}`)
     const data = await response.json()
 
     setTimeout(() => {
