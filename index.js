@@ -37,9 +37,11 @@ formElement.addEventListener("submit", async (event) => {
       movies.forEach(movie => {
         resultsElement.innerHTML +=
           `<div class="movie">
-            <figure class="movie__img--wrapper">
-              <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
-            </figure>
+            <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
+              <figure class="movie__img--wrapper">
+                <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
+              </figure>
+            </a>
             <h2 class="movie__title">${movie.Title}</h2>
             <p>${movie.Year}</p>
           </div>`
@@ -54,9 +56,11 @@ formElement.addEventListener("submit", async (event) => {
           movies.forEach(movie => {
             resultsElement.innerHTML +=
               `<div class="movie">
-                <figure class="movie__img--wrapper">
-                  <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
-                </figure>
+                <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
+                  <figure class="movie__img--wrapper">
+                    <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
+                  </figure>
+                </a>
                 <h2 class="movie__title">${movie.Title}</h2>
                 <p>${movie.Year}</p>
               </div>`
@@ -69,12 +73,14 @@ formElement.addEventListener("submit", async (event) => {
           movies.forEach(movie => {
             resultsElement.innerHTML +=
               `<div class="movie">
-                <figure class="movie__img--wrapper">
-                  <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
-                </figure>
-                <h2 class="movie__title">${movie.Title}</h2>
-                <p>${movie.Year}</p>
-              </div>`
+                  <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
+                    <figure class="movie__img--wrapper">
+                      <img src="${movie.Poster}" onerror="this.onerror=null; this.src='./assets/fallback image.png'" class="movie__img"/>
+                    </figure>
+                  </a>
+                  <h2 class="movie__title">${movie.Title}</h2>
+                  <p>${movie.Year}</p>
+                </div>`
           })
         }
       })
