@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Browser</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/c9e8f8a23e.js" crossorigin="anonymous"></script>
+    <script src="index.js" defer></script>
+  </head>
+
+  <body>
+    <section>
+      <nav>
+        <div class="nav__container">
+          <img class="logo" src="./assets/browser logo.png" alt="" />
+          <ul class="nav__links">
+            <li><a href="#" class="nav__link">Home</a></li>
+            <li><a href="#" class="nav__link">Movies</a></li>
+            <li><a href="#" class="nav__link nav__link--primary no-cursor">Contact</a></li>
+          </ul>
+          <button class="btn__menu" onclick="openMenu()">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="menu__backdrop" style="visibility: hidden">
+            <button class="btn__menu btn__menu--close" onclick="closeMenu()">
+              <i class="fas fa-times"></i>
+            </button>
+            <ul class="menu__links">
+              <li class="menu__list">
+                <a href="#" class="menu__link" onclick="closeMenu()">Home</a>
+              </li>
+              <li class="menu__list">
+                <a href="#" class="menu__link" onclick="closeMenu()">Movies</a>
+              </li>
+              <li class="menu__list">
+                <a class="menu__link no-cursor" onclick="closeMenu()">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <main>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="movie__header">
+              <h2 class="movie__header--title">Browse for movies</h2>
+              <form>
+                <input id="searchInput" placeholder="Search by Title or Keyword" required />
+                <button class="btn"><i class="fas fa-magnifying-glass"></i></button>
+              </form>
+              <select id="filter">
+                <option value="reset" disabled selected>Sort</option>
+                <option value="OLD_TO_NEW">Oldest to Newest</option>
+                <option value="NEW_TO_OLD">Newest to Oldest</option>
+              </select>
+              <div class="searchResults"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="row row__column">
+          <a href="#">
+            <figure class="footer__logo">
+              <img src="./assets/browser logo.png" class="footer__logo--img" alt="" />
+            </figure>
+          </a>
+          <div class="footer__list">
+            <a href="#" class="footer__link">Home</a>
+            <a class="footer__link no-cursor">About</a>
+            <a href="#" class="footer__link">Movies</a>
+            <a class="footer__link no-cursor">Contact</a>
+          </div>
+          <div class="footer__copyright">Copyright &copy; 2026 Film Frenzy</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
