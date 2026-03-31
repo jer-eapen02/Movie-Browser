@@ -10,14 +10,14 @@
     <script src="index.js" defer></script>
   </head>
   
-  <body>
+  <body id="movie__body">
     <section>
       <nav>
         <div class="nav__container">
-          <img class="logo" src="./assets/browser logo.png" alt="" />
+          <img class="logo reload" src="./assets/browser logo.png" alt="" />
           <ul class="nav__links">
-            <li><a href="#" class="nav__link">Home</a></li>
-            <li><a href="#" class="nav__link">Movies</a></li>
+            <li><a href="" class="nav__link reload">Home</a></li>
+            <li><a href="#movie__main" class="nav__link">Movies</a></li>
             <li><a href="#" class="nav__link nav__link--primary no-cursor">Contact</a></li>
           </ul>
           <button class="btn__menu" onclick="openMenu()">
@@ -32,7 +32,7 @@
                 <a href="#" class="menu__link" onclick="closeMenu()">Home</a>
               </li>
               <li class="menu__list">
-                <a href="#" class="menu__link" onclick="closeMenu()">Movies</a>
+                <a href="#movie__main" class="menu__link" onclick="closeMenu()">Movies</a>
               </li>
               <li class="menu__list">
                 <a class="menu__link no-cursor" onclick="closeMenu()">Contact</a>
@@ -43,7 +43,7 @@
       </nav>
     </section>
 
-    <main>
+    <main id="movie__main">
       <section>
         <div class="container">
           <div class="row">
@@ -53,8 +53,11 @@
                 <input id="searchInput" placeholder="Search by Title or Keyword" required />
                 <button class="btn"><i class="fas fa-magnifying-glass"></i></button>
               </form>
+              <figure class="header__img--wrapper">
+                <img src="./assets/watching a movie.svg" class="header__img" />
+              </figure>
               <select id="filter">
-                <option value="reset" disabled selected>Sort</option>
+                <option value="reset" disabled selected>Sort by Year</option>
                 <option value="OLD_TO_NEW">Oldest to Newest</option>
                 <option value="NEW_TO_OLD">Newest to Oldest</option>
               </select>
@@ -76,7 +79,7 @@
           <div class="footer__list">
             <a href="#" class="footer__link">Home</a>
             <a class="footer__link no-cursor">About</a>
-            <a href="#" class="footer__link">Movies</a>
+            <a href="#movie__main" class="footer__link">Movies</a>
             <a class="footer__link no-cursor">Contact</a>
           </div>
           <div class="footer__copyright">Copyright &copy; 2026 Film Frenzy</div>

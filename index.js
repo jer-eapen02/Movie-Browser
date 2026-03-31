@@ -6,17 +6,24 @@ function closeMenu() {
   document.body.classList.remove('menu--open')
 }
 
+const reloadElement = document.querySelector(".reload")
 const inputElement = document.querySelector("#searchInput")
 const formElement = document.querySelector("form")
 const resultsElement = document.querySelector(".searchResults")
 const filterElement = document.querySelector("#filter")
 let button = document.querySelector(".btn")
+const hideImage = document.querySelector(".header__img--wrapper")
+
+reloadElement.addEventListener("click", () => {
+  window.location.reload()
+})
 
 formElement.addEventListener("submit", async (event) => {
     event.preventDefault()
     button.innerHTML = `<i class="fas fa-spinner searchResults__loading--spinner"></i>`
     button.disabled = true
     filterElement.style = "visibility: hidden; margin-top: 0"
+    hideImage.style = "display: none"
 
     resultsElement.innerHTML = ""
     const inputValue = inputElement.value
@@ -54,13 +61,11 @@ formElement.addEventListener("submit", async (event) => {
 
           if (selection === "OLD_TO_NEW") {
             movies.sort((a, b) => a.Year - b.Year)
-            resultsElement.innerHTML = movies.map(movie => movieHtml(movie)).join("")
           }
-          
           else if (selection === "NEW_TO_OLD") {
             movies.sort((a, b) => b.Year - a.Year)
-            resultsElement.innerHTML = movies.map(movie => movieHtml(movie)).join("")
           }
+          resultsElement.innerHTML = movies.map(movie => movieHtml(movie)).join("")
         })
       }
     }, 1000)
